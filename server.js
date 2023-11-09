@@ -10,6 +10,8 @@ app.listen(port, host, () => {
 
 app.use(express.json());  // convert req body/payload to JSON
 
+app.get('/', (req, res) => res.send('<h1> Welcome to the Todo App </h1>'))
+
 // Add a todo item
 app.post('/todoitem', (req, res) => {
     const { title } = req.body;
