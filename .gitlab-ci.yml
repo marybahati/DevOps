@@ -12,8 +12,6 @@ variables:
 before_script:
   - apt-get update -qy
   - apt-get install -y docker.io
-  - docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY_PASSWORD
-
 build-docker-image:
   stage: build-docker-image
   script:
@@ -22,4 +20,5 @@ build-docker-image:
 push-image-to-docker-hub:
   stage: push-image-to-docker-hub
   script:
+    - docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY_PASSWORD
     - docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
