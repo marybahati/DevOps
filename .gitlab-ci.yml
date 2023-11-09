@@ -10,6 +10,8 @@ variables:
   DOCKER_IMAGE_TAG: "v1.0"
 
 before_script:
+  - apt-get update -qy
+  - apt-get install -y docker.io
   - docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY_PASSWORD
 
 build-docker-image:
