@@ -5,6 +5,7 @@ stages:
 
 build:
   stage: build
+  script:
     - yarn install
     - yarn run build
   artifacts:
