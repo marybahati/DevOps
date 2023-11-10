@@ -6,7 +6,7 @@ variables:
 
 deploy-docker-image:
   stage: deploy-docker-image
-  # image: docker:latest
+  image: docker:latest
   services:
     - docker:dind
   before_script:
