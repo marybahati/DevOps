@@ -6,8 +6,8 @@ stages:
   - push-image-to-docker-hub
 
 variables:
-  DOCKER_IMAGE_NAME: "todo-app"
   DOCKER_IMAGE_TAG: "v1.0"
+  DOCKER_IMAGE_NAME: "marybahati/todo-app"
 
 before_script:
   - apt-get update -qy
@@ -17,9 +17,10 @@ build-docker-image:
   stage: build-docker-image
   script:
     - docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG .
+    - docker images
 
 push-image-to-docker-hub:
   stage: push-image-to-docker-hub
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_TOKEN $CI_REGISTRY
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_IMAGE_NAME" --password-stdin
     - docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
