@@ -8,6 +8,7 @@ deploy:
   stage: deploy
   only:
     - main
+  image: docker:latest
   script:
     - echo "Deploying to Docker Hub"
     - docker build -t $DOCKER_IMAGE_NAME .
