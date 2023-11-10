@@ -1,28 +1,18 @@
-services:
-  - docker:dind
 
 stages:
   - build-docker-image
   - push-image-to-docker-hub
 
-variables:
-  DOCKER_IMAGE_TAG: "v1.0"
-  DOCKER_IMAGE_NAME: "marybahati/todo-app"
-
-before_script:
-  - apt-get update -qy
-  - apt-get install -y docker.io
-  - service docker start
-  - docker info
-
 build-docker-image:
   stage: build-docker-image
   script:
-    - docker build -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG .
-    - docker images
+    - docker info
+    - docker build -t marybahati/todo-app .
 
 push-image-to-docker-hub:
   stage: push-image-to-docker-hub
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD"
   script:
-    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_IMAGE_NAME" --password-stdin
-    - docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
+    - docker info
+    - docker push marybahati/todo-app
