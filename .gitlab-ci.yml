@@ -15,7 +15,8 @@ deploy:
   stage: deploy
   only:
     - main
-  image: docker:latest
+  services:
+    - docker:19.03.13-dind
   script:
     - echo "Pushing Docker image to Docker Hub"
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin
