@@ -1,3 +1,11 @@
+services:
+  - docker:dind
+
+before_script:
+  - apt-get update -qy
+  - apt-get install -y docker.io
+  - service docker start
+  - docker info
 
 stages:
   - build-docker-image
