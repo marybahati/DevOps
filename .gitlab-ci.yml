@@ -8,7 +8,7 @@ deploy:
   stage: deploy
   only:
     - main
-  image: docker:latest
+  image: docker:19.03
   script:
     - echo "Deploying to Docker Hub"
     - docker info
