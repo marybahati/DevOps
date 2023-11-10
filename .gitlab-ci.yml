@@ -1,9 +1,17 @@
 stages:
+  - setup
   - build
   - deploy
 
 variables:
   DOCKER_IMAGE_NAME: "marybahati/todo-app"
+
+setup:
+  stage: setup
+  script:
+    - apt-get update -qy
+    - apt-get install -y docker.io
+    - docker --version
 
 build:
   stage: build
