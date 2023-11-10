@@ -1,6 +1,5 @@
 stages:
   - setup
-  - build
   - deploy
 
 variables:
@@ -11,13 +10,6 @@ setup:
   image: docker:latest
   script:
     - docker --version
-
-build:
-  stage: build
-  image: node:latest
-  script:
-    - yarn install
-    - yarn run build
 
 deploy:
   stage: deploy
