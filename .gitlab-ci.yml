@@ -3,7 +3,7 @@ stages:
   - build-docker-image
   - push-image-to-docker-hub
 
-build-nodejs-project:
+build:
   stage: build
     - yarn install
     - yarn run build
