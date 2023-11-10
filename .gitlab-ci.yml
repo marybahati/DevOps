@@ -1,17 +1,18 @@
 stages:
-  - deploy
+  - docker-build
 
 variables:
   DOCKER_IMAGE_NAME: "marybahati/todo-app"
 
-deploy:
-  stage: deploy
+docker-build:
+  image: docker:latest
+  stage: docker-build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build -t "$DOCKER_IMAGE_NAME:$CI_COMMIT_REF_SLUG" .
+    - docker push "$DOCKER_IMAGE_NAME:$CI_COMMIT_REF_SLUG"
   only:
     - main
-  image: docker:19.03
-  script:
-    - echo "Deploying to Docker Hub"
-    - docker info
-    - docker build -t $DOCKER_IMAGE_NAME .
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin
-    - docker push $DOCKER_IMAGE_NAME
