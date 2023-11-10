@@ -12,6 +12,8 @@ variables:
 before_script:
   - apt-get update -qy
   - apt-get install -y docker.io
+  - service docker start
+  - docker info
 
 build-docker-image:
   stage: build-docker-image
