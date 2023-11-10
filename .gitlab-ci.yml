@@ -16,7 +16,7 @@ deploy:
   only:
     - main
   services:
-    - docker:19.03.13-dind
+    - docker:24.0.7-dind
   script:
     - echo "Pushing Docker image to Docker Hub"
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin
