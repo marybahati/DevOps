@@ -3,16 +3,16 @@ kind: Deployment
 metadata: 
   name: todo-app
   labels: 
-    app: node-deployment
+    app: node-deployment1
 spec:
   replicas: 2
   selector:
     matchLabels:
-        app: node-deployment
+        app: node-deployment2
   template:
     metadata:
       labels:
-        app: node-deployment
+        app: node-deployment2
     spec:
       containers:
       - name: todo-app-server

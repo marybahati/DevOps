@@ -4,7 +4,7 @@ metadata:
   name: node-app-service
 spec:
   selector:
-    app: node-deployment
+    app: node-deployment2
   type: NodePort
   ports:
   - protocol: TCP
